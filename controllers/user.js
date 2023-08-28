@@ -43,6 +43,8 @@ const login = async (req, res, next) => {
       { expiresIn: "5min" }
     );
 
+    
+
     res.json({ success: 200, data:{
         id:data.id,
         name:name,
@@ -58,12 +60,15 @@ const login = async (req, res, next) => {
 
 const getAll = asynchandler(async (req, res, next) => {
   const data = await userService.allUser();
-
   
   if (data) {
     res.json(data);
   } else {
-    throw new Error("no data found");
+    
+     console.log("here found in get all");
+    const error = new Error("No data found");
+    error.statusCode = 401;
+    next(error);
   }
 });
 

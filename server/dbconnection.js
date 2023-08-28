@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 
-const mongoDb= "db_name";
+const mongoDb= "mongodb://0.0.0.0:27017/sampleDb";
 
 mongoose.connect(mongoDb,{
     useNewUrlParser:true,    

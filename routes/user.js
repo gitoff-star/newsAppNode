@@ -1,14 +1,13 @@
 const userController = require('../controllers/user');
 var express = require('express');
 const auth = require('../services/auth');
+const tryCatch = require('../configurations/tryCatch');
 var router = express.Router();
 
 
-router.post('/login',userController.login);
-router.post('/signup',userController.signup);
-router.get('/users',auth,userController.getAll);
-router.get('/deluser',auth,userController.removeUser);
-router.post('/deluser/:id',auth,userController.removeUser)
+router.get('/users', userController.getAll);
+router.get('/deluser',userController.removeUser);
+router.post('/deluser/:id',userController.removeUser)
 
 
 
