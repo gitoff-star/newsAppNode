@@ -5,7 +5,7 @@ const auth = asyncHandler(async (req, res, next) => {
   let Token;
 
   const authHead = req.headers.authorization || req.headers.Authorization;
-  console.log(`token is :`);
+  
   if (authHead) {
     
     if (authHead.startsWith("Bearer") || authHead.startsWith("bearer")) {
@@ -15,26 +15,29 @@ const auth = asyncHandler(async (req, res, next) => {
 
       try {
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY); // Verify the token using the secret key
-       
+        console.log(`token is verified:`);
        return res.status(201);
       } catch (err) {
-        
-        res.status(401).json({ error: "Authorization failed" }); // Send a 401 Unauthorized status and error message
-        next();
-        // return ;
+        console.log(`token error :`);
+        err.message="authorization failed";
+        res.status(401);
+        next(err);
       }
     }else{
-      res.status(401).json({ error: "Authorization header missing" }); // 
+    
+      res.status(401);
+      next();
     }
     
   } else {
-    res.status(401).json({ error: "Authorization header missing" }); // Send a 401 Unauthorized status and error message
-   next();
+    
+    res.status(401);
+    next();
+  //  next();
     // return;
   }
-
   // If the token is valid, continue processing the request
-  // next();
+  
 });
 
 module.exports = auth;

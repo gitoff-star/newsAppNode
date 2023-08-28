@@ -59,8 +59,11 @@ const login = async (req, res, next) => {
 };
 
 const getAll = asynchandler(async (req, res, next) => {
+
+ 
   const data = await userService.allUser();
   
+
   if (data) {
     res.json(data);
   } else {
