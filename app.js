@@ -19,6 +19,12 @@ var app = express();
 //db instanse 
 require('./server/dbconnection');
 
+// const corsOptions = {
+//     origin: 'http://localhost',   // Set the allowed origin(s)
+//     methods: 'GET,POST',             // Specify allowed HTTP methods
+//     allowedHeaders: 'Content-Type',  // Specify allowed headers
+//     credentials: true                // Enable sending cookies in cross-origin requests
+//   };
 
 // view engine setupc
 app.set('views', path.join(__dirname, 'views'));
